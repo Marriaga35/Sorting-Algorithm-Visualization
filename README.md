@@ -18,4 +18,4 @@ The program is designed to operate as easy as possible. Minimize little to no tr
 
 Running the Application:
 
-The application is downlodaded to the local machine. It's a runnable jar file that can either be ran by clicking on the jar file or implemented through the native computer's terminal.
+The application is downloaded to the local machine. It's a runnable jar file that can either be ran by clicking on the jar file or implemented through the native computer's terminal.
