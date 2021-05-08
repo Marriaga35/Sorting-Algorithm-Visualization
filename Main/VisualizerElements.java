@@ -27,7 +27,7 @@ public class VisualizerElements extends JFrame {
 	private final int MAX_SIZE = 500;
 	private final int MIN_SIZE = 1;
 	private final int DEFAULT_SPEED = 20;
-	private final int DEFAULT_SIZE = 100;
+	private final int DEFAULT_SIZE = 20;
 	
 	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection"};
 	
@@ -56,7 +56,7 @@ public class VisualizerElements extends JFrame {
 		speed = new JSlider(MIN_SPEED, MAX_SPEED, DEFAULT_SPEED);
 		size = new JSlider(MIN_SIZE, MAX_SIZE, DEFAULT_SIZE);
 		speedVal = new JLabel("Speed: 20 ms");
-		sizeVal = new JLabel("Size: 100 values");
+		sizeVal = new JLabel("Size: 20 values");
 		c = new GridBagConstraints();
 		
 		for(String s : Sorts) selection.addItem(s);
