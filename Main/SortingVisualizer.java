@@ -12,7 +12,7 @@ public class SortingVisualizer {
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
-	public static int sortDataCount = 100;
+	public static int sortDataCount = 20;
 	public static int sleep = 20;
 	public static int blockWidth;
 	
