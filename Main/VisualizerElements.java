@@ -33,9 +33,9 @@ public class VisualizerElements extends JFrame {
 	
 	private int sizeModifier;
 
-	private JPanel wrapper;
-	private JPanel arrayWrapper;
-	private JPanel buttonWrapper;
+	private JPanel wrapper; //contains both arrayWrapper and buttonWrapper
+	private JPanel arrayWrapper; //contains Array
+	private JPanel buttonWrapper; //contain Buttons
 	private JPanel[] squarePanels;
 	private JButton start;
 	private JComboBox<String> selection;
