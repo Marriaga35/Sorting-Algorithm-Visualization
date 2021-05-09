@@ -97,15 +97,15 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sortDataCount = size.getValue();
 			}
 		});
-
+		
+		buttonWrapper.add(start);
 		buttonWrapper.add(speedVal);
 		buttonWrapper.add(speed);
 		buttonWrapper.add(sizeVal);
 		buttonWrapper.add(size);
-		buttonWrapper.add(start);
 		buttonWrapper.add(selection);
 		
-		wrapper.add(buttonWrapper, BorderLayout.SOUTH);
+		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper);
 		
 		add(wrapper);
