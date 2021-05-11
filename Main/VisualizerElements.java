@@ -66,7 +66,7 @@ public class VisualizerElements extends JFrame {
 		for(String s : Sorts) selection.addItem(s);
 		
 		arrayWrapper.setLayout(new GridBagLayout());
-		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array
+		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
 
 		c.insets = new Insets(0,1,0,1);
@@ -119,7 +119,7 @@ public class VisualizerElements extends JFrame {
 		
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper, BorderLayout.WEST);
-		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear
+		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear(Waleed)
 		
 		add(wrapper);
 
