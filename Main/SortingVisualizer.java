@@ -84,4 +84,13 @@ public class SortingVisualizer {
 		
 	}
 
+	//Stops the sorting algorithm(Waleed)
+	@SuppressWarnings("deprecation")
+	public static void stopSort(String selectedItem) {
+		
+		sortingThread.stop();
+		sortingThread = null;
+		
+	}
+
 }

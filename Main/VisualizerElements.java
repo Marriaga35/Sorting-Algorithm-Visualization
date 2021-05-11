@@ -38,6 +38,7 @@ public class VisualizerElements extends JFrame {
 	private JPanel buttonWrapper; //contain Buttons
 	private JPanel[] squarePanels;
 	private JButton start;
+	private JButton stop;//Stop sort button(Waleed)
 	private JComboBox<String> selection;
 	private JSlider speed;
 	private JSlider size;
@@ -49,6 +50,7 @@ public class VisualizerElements extends JFrame {
 		super("Sorting Visualizer");
 		
 		start = new JButton("Start");
+		stop = new JButton("Stop");//Sort sort button created(Waleed)
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
 		wrapper = new JPanel();
@@ -72,8 +74,14 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.startSort((String) selection.getSelectedItem());
 			}
 		});
-		
-		
+
+		//Activates stopSort from SortingVisualizer(Waleed)
+		stop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SortingVisualizer.stopSort((String) selection.getSelectedItem());
+			}
+		});
+
 		speed.setMinorTickSpacing(10);
 		speed.setMajorTickSpacing(100);
 		speed.setPaintTicks(true);
@@ -99,6 +107,7 @@ public class VisualizerElements extends JFrame {
 		});
 		
 		buttonWrapper.add(start);
+		buttonWrapper.add(stop); //Button for stop sort(Waleed)
 		buttonWrapper.add(speedVal);
 		buttonWrapper.add(speed);
 		buttonWrapper.add(sizeVal);
