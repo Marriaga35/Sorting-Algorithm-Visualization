@@ -46,6 +46,7 @@ public class SortingVisualizer {
 			toBeSorted = shuffleThis.toArray(toBeSorted);
 		}
 		frame.preDrawArray(toBeSorted);
+		frame.preDrawArray2(toBeSorted);//Inclusion of second array (Waleed)
 	}
 	
 	public static void startSort(String type){

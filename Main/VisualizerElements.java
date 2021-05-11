@@ -35,6 +35,7 @@ public class VisualizerElements extends JFrame {
 
 	private JPanel wrapper; //contains both arrayWrapper and buttonWrapper
 	private JPanel arrayWrapper; //contains Array
+	private JPanel arrayWrapper2;//Second array (Waleed)
 	private JPanel buttonWrapper; //contain Buttons
 	private JPanel[] squarePanels;
 	private JButton start;
@@ -53,6 +54,7 @@ public class VisualizerElements extends JFrame {
 		stop = new JButton("Stop");//Sort sort button created(Waleed)
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
+		arrayWrapper2 = new JPanel();//Second array created(Waleed)
 		wrapper = new JPanel();
 		selection = new JComboBox<String>();
 		speed = new JSlider(MIN_SPEED, MAX_SPEED, DEFAULT_SPEED);
@@ -64,6 +66,7 @@ public class VisualizerElements extends JFrame {
 		for(String s : Sorts) selection.addItem(s);
 		
 		arrayWrapper.setLayout(new GridBagLayout());
+		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array
 		wrapper.setLayout(new BorderLayout());
 
 		c.insets = new Insets(0,1,0,1);
@@ -115,7 +118,8 @@ public class VisualizerElements extends JFrame {
 		buttonWrapper.add(selection);
 		
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
-		wrapper.add(arrayWrapper);
+		wrapper.add(arrayWrapper, BorderLayout.WEST);
+		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear
 		
 		add(wrapper);
 
@@ -195,6 +199,55 @@ public class VisualizerElements extends JFrame {
 				squarePanels[i].setBackground(Color.blue);
 			}
 			arrayWrapper.add(squarePanels[i], c);
+		}
+		repaint();
+		validate();
+	}
+
+	//Draws the second array(Waleed)
+	public void preDrawArray2(Integer[] squares){
+		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
+		arrayWrapper2.removeAll();
+		
+		sizeModifier =  (int) ((getHeight()*0.9)/(squarePanels.length));
+		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
+			squarePanels[i] = new JPanel();
+			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			squarePanels[i].setBackground(Color.blue);
+			arrayWrapper2.add(squarePanels[i], c);
+		}
+		repaint();
+		validate();
+	}
+	
+	public void reDrawArray2(Integer[] x){
+		reDrawArray2(x, -1);
+	}
+	
+	public void reDrawArray2(Integer[] x, int y){
+		reDrawArray2(x, y, -1);
+	}
+	
+	public void reDrawArray2(Integer[] x, int y, int z){
+		reDrawArray2(x, y, z, -1);
+	}
+	
+	
+	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
+		arrayWrapper2.removeAll();
+		for(int i = 0; i<squarePanels.length; i++){
+			squarePanels[i] = new JPanel();
+			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			if (i == working){
+				squarePanels[i].setBackground(Color.green);				
+			}else if(i == comparing){
+				squarePanels[i].setBackground(Color.red);			
+			}else if(i == reading){
+				squarePanels[i].setBackground(Color.yellow);			
+			}else{
+				squarePanels[i].setBackground(Color.blue);
+			}
+			arrayWrapper2.add(squarePanels[i], c);
 		}
 		repaint();
 		validate();
