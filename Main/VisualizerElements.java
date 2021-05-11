@@ -3,6 +3,7 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -10,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -65,11 +69,23 @@ public class VisualizerElements extends JFrame {
 		
 		for(String s : Sorts) selection.addItem(s);
 		
-		arrayWrapper.setLayout(new GridBagLayout());
-		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
+		/*Sets FlowLayout to keep array panel at a fixed size
+		 * prevents it from expanding when size of array is increased
+		 * (Mario)
+		 */
+		arrayWrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
+		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
+		
 
-		c.insets = new Insets(0,1,0,1);
+		//Set borders around both array 1 and 2. (Mario)
+		arrayWrapper.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+	    arrayWrapper2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+	    arrayWrapper.setBackground(Color.WHITE);
+	    arrayWrapper2.setBackground(Color.WHITE);
+        
+		
+	    c.insets = new Insets(0,1,0,1);
 		c.anchor = GridBagConstraints.SOUTH;
 		
 		start.addActionListener(new ActionListener() {
@@ -254,3 +270,4 @@ public class VisualizerElements extends JFrame {
 	}
 	
 }
+
