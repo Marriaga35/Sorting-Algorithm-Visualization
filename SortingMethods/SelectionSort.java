@@ -34,7 +34,7 @@ public class SelectionSort implements Runnable{
 				}				
 			}
 			frame.reDrawArray(toBeSorted);
-			frame.reDrawArray2(toBeSorted);
+			
 			try {
 				Thread.sleep(SortingVisualizer.sleep);
 			} catch (InterruptedException e) {
@@ -57,7 +57,7 @@ public class SelectionSort implements Runnable{
 					selected = j;
 				}
 				frame.reDrawArray(toBeSorted, selected, j-1);
-				frame.reDrawArray2(toBeSorted, selected, j-1);
+				//frame.reDrawArray2(toBeSorted, selected, j-1);
 				try {
 					Thread.sleep(SortingVisualizer.sleep);
 				} catch (InterruptedException e) {
@@ -69,7 +69,7 @@ public class SelectionSort implements Runnable{
 			toBeSorted[selected]= temp;
 		}
 		frame.reDrawArray(toBeSorted);
-		frame.reDrawArray2(toBeSorted);
+		//frame.reDrawArray2(toBeSorted);
 	}
 
 }

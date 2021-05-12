@@ -60,6 +60,7 @@ public class SortingVisualizer {
 			switch(type){
 			case "Bubble":
 				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, false));
+				
 				break;
 				
 			case "Insertion":
@@ -73,16 +74,54 @@ public class SortingVisualizer {
 			case "Selection":
 				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, false));
 				break;
-				
+			
 			default:
 				isSorting = false;
 				return;
 			}
 			
-			sortingThread.start();
+			sortingThread.start();}
 			
 		}
 		
+	
+	                 /*startSort2 switch case for second array
+	                  * uses sort methods 2 to perform reDrawArray2.
+	                  * (Mario)
+	                  */
+		public static void startSort2(String s2){
+			
+			if (sortingThread == null || !isSorting){
+				
+				resetArray();
+				
+				isSorting = true;
+
+				switch(s2){
+				
+				case "Bubble":
+					sortingThread = new Thread(new BubbleSort2(toBeSorted, frame, false));
+					break;
+					
+				case "Insertion":
+					sortingThread = new Thread(new InsertionSort2(toBeSorted, frame, false));
+					break;
+					
+				case "Merge":
+					sortingThread = new Thread(new MergeSort2());
+					break;	
+					
+				case "Selection":
+					sortingThread = new Thread(new SelectionSort2(toBeSorted, frame, false));
+					break;
+				default:
+					isSorting = false;
+					return;
+				}
+				
+				sortingThread.start();
+				
+			}
 	}
 
 	//Stops the sorting algorithm(Waleed)

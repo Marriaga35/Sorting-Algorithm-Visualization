@@ -37,7 +37,7 @@ public class BubbleSort implements Runnable{
 				}
 			}
 			frame.reDrawArray(toBeSorted);
-			frame.reDrawArray2(toBeSorted);
+		
 			try {
 				Thread.sleep(SortingVisualizer.sleep);
 			} catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class BubbleSort implements Runnable{
 					swapped = true;
 				}
 				frame.reDrawArray(toBeSorted, j, j+1);
-				frame.reDrawArray2(toBeSorted, j, j+1);
+			
 				try {
 					Thread.sleep(SortingVisualizer.sleep);
 				} catch (InterruptedException e) {
