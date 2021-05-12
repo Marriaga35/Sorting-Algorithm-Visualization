@@ -53,7 +53,7 @@ public class VisualizerElements extends JFrame {
 		super("Sorting Visualizer");
 		
 		start = new JButton("Start");
-		stop = new JButton("Stop");//Stop sort button created(Waleed)
+		stop = new JButton("Stop");//Stop button created(Waleed)
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
 		arrayWrapper2 = new JPanel();//Second array created(Waleed)
