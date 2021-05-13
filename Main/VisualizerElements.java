@@ -108,24 +108,24 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.stopSort((String) selection.getSelectedItem());
 			}
 		});
-		
+
 		help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					//Create the window. 
-					JFrame frame = new JFrame("Help Menu");
-					//Text in window
-					JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER); 
-					textLabel.setPreferredSize(new Dimension(500, 250)); 
-					frame.getContentPane().add(textLabel, BorderLayout.CENTER); 
-					//Display the window 
-					frame.setLocationRelativeTo(null); 
-					frame.pack(); 
-					frame.setVisible(true); 
-					//Creates Message Window with default OK button to close
-					//JOptionPane.showMessageDialog(null, "Text is placed here");
+				//Create the window. 
+				JFrame frame = new JFrame("Help Menu");
+				//Text in window
+				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER); 
+				textLabel.setPreferredSize(new Dimension(500, 250)); 
+				frame.getContentPane().add(textLabel, BorderLayout.CENTER); 
+				//Display the window 
+				frame.setLocationRelativeTo(null); 
+				frame.pack(); 
+				frame.setVisible(true); 
+				//Creates Message Window with default OK button to close
+				//JOptionPane.showMessageDialog(null, "Text is placed here");
 			}
 		});
-		
+
 		speed.setMinorTickSpacing(10);
 		speed.setMajorTickSpacing(100);
 		speed.setPaintTicks(true);
