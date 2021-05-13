@@ -6,24 +6,26 @@ public class BubbleSort implements Runnable{
 	
 	private Integer[] toBeSorted;
 	private VisualizerElements frame;
-	private boolean fast;
+	private boolean firstarray;
 	
-	public BubbleSort(Integer[] toBeSorted, VisualizerElements frame, boolean fast) {
+	public BubbleSort(Integer[] toBeSorted, VisualizerElements frame, boolean firstarray) {
 		this.toBeSorted = toBeSorted;
 		this.frame = frame;
-		this.fast = fast;
+		this.firstarray = firstarray;
 	}
 	
+	//Determines whether the user would like to sort the first array or second array(Waleed)
 	public void run() {
-		if (fast) {
-			sortFast();
+		if (firstarray == true) {
+			firstArray();
 		} else {
-			sortSlow();
+			secondArray();
 		}
 		SortingVisualizer.isSorting=false;
 	}
 	
-	public void sortFast() {
+	//sorting method for first array
+	public void firstArray() {
 		int temp = 0;
 		boolean swapped = false;
 		for(int i = 0; i<toBeSorted.length-1; i++){
@@ -35,19 +37,19 @@ public class BubbleSort implements Runnable{
 					toBeSorted[j]= temp;
 					swapped = true;
 				}
-			}
-			frame.reDrawArray(toBeSorted);
-		
-			try {
-				Thread.sleep(SortingVisualizer.sleep);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				frame.reDrawArray(toBeSorted, j, j+1);//runs first array
+				try {
+					Thread.sleep(SortingVisualizer.sleep);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			if (!swapped) break;
 		}
 	}
 	
-	public void sortSlow() {
+	//sorting method for second array
+	public void secondArray() {
 		int temp = 0;
 		boolean swapped = false;
 		for(int i = 0; i<toBeSorted.length-1; i++){
@@ -59,8 +61,7 @@ public class BubbleSort implements Runnable{
 					toBeSorted[j]= temp;
 					swapped = true;
 				}
-				frame.reDrawArray(toBeSorted, j, j+1);
-			
+				frame.reDrawArray2(toBeSorted, j, j+1);//runs second array(Waleed)
 				try {
 					Thread.sleep(SortingVisualizer.sleep);
 				} catch (InterruptedException e) {

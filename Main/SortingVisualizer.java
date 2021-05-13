@@ -8,7 +8,6 @@ import SortingMethods.*;
 public class SortingVisualizer {
 	
 	private static Thread sortingThread;
-
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
@@ -49,7 +48,7 @@ public class SortingVisualizer {
 		frame.preDrawArray2(toBeSorted);//Inclusion of second array (Waleed)
 	}
 	
-	public static void startSort(String type){
+	public static void startSort(String type, String type2){
 		
 		if (sortingThread == null || !isSorting){
 			
@@ -57,22 +56,22 @@ public class SortingVisualizer {
 			
 			isSorting = true;
 
+			//Reads user's first choice
 			switch(type){
 			case "Bubble":
-				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, false));
-				
+				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, true));
 				break;
 				
 			case "Insertion":
-				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, false));
+				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, true));
 				break;
 				
 			case "Merge":
-				sortingThread = new Thread(new MergeSort());
+				sortingThread = new Thread(new MergeSort(true));
 				break;	
 				
 			case "Selection":
-				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, false));
+				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, true));
 				break;
 			
 			default:
@@ -80,16 +79,43 @@ public class SortingVisualizer {
 				return;
 			}
 			
-			sortingThread.start();}
+			sortingThread.start();
+
+			//Reads user's second choice
+			switch(type2){
+			case "Bubble":
+				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, false));
+				break;
+				
+			case "Insertion":
+				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, false));
+				break;
+				
+			case "Merge":
+				sortingThread = new Thread(new MergeSort(false));
+				break;	
+				
+			case "Selection":
+				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, false));
+				break;
+				
+			default:
+				isSorting = false;
+				return;
+			}
+			
+			sortingThread.start();
 			
 		}
 		
+	}
+		
 	
-	                 /*startSort2 switch case for second array
-	                  * uses sort methods 2 to perform reDrawArray2.
-	                  * (Mario)
-	                  */
-		public static void startSort2(String s2){
+	     /*startSort2 switch case for second array
+	     * uses sort methods 2 to perform reDrawArray2.
+	     * (Mario)
+	     */
+		/*public static void startSort2(String s2){
 			
 			if (sortingThread == null || !isSorting){
 				
@@ -122,7 +148,7 @@ public class SortingVisualizer {
 				sortingThread.start();
 				
 			}
-	}
+	}*/
 
 	//Stops the sorting algorithm(Waleed)
 	@SuppressWarnings("deprecation")
