@@ -13,12 +13,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class VisualizerElements extends JFrame {
 
 	//protected static final String String = null; (Mario)
@@ -28,7 +30,7 @@ public class VisualizerElements extends JFrame {
 	private final int MIN_SIZE = 1;
 	private final int DEFAULT_SPEED = 20;
 	private final int DEFAULT_SIZE = 20;
-	
+
 	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection", };
 	//private final String[] Sorts2 = {"Bubble", "Insertion", "Merge", "Selection"};(Mario)
 	private int sizeModifier;
@@ -38,8 +40,9 @@ public class VisualizerElements extends JFrame {
 	private JPanel arrayWrapper2;//Second array (Waleed)
 	private JPanel buttonWrapper; //contain Buttons
 	private JPanel[] squarePanels;
-	private JButton start;
+	private JButton start;//Start Sort Button
 	private JButton stop;//Stop sort button(Waleed)
+	private JButton help;//Help Button
 	private JComboBox<String> selection;
 	private JComboBox<String> selection2; //second array sort (Mario)
 	private JSlider speed;
@@ -47,12 +50,13 @@ public class VisualizerElements extends JFrame {
 	private JLabel speedVal;
 	private JLabel sizeVal;
 	private GridBagConstraints c;
-	
+
 	public VisualizerElements(){
 		super("Sorting Visualizer");
-		
+
 		start = new JButton("Start");
 		stop = new JButton("Stop");//Stop button created(Waleed)
+		help = new JButton("Help");
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
 		arrayWrapper2 = new JPanel();//Second array created(Waleed)
@@ -64,42 +68,39 @@ public class VisualizerElements extends JFrame {
 		speedVal = new JLabel("Speed: 20 ms");
 		sizeVal = new JLabel("Size: 20 values");
 		c = new GridBagConstraints();
-		
+
 		for(String s : Sorts) selection.addItem(s);
 		for(String s : Sorts) selection2.addItem(s);//(Waleed)
 		//for(String s2 : Sorts2) selection2.addItem(s2); //Second Array (Mario)
-		
+
 		/*Sets FlowLayout to keep array panel at a fixed size
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
 		 */
 		//arrayWrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
 		//arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
-		
+
 		arrayWrapper.setLayout(new GridBagLayout());
 		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
-		
+
 
 		//Set borders around both array 1 and 2. (Mario)
 		//arrayWrapper.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-	   // arrayWrapper2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-	   // arrayWrapper.setBackground(Color.WHITE);
-	    //arrayWrapper2.setBackground(Color.WHITE);
-        
+		// arrayWrapper2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+		// arrayWrapper.setBackground(Color.WHITE);
+		//arrayWrapper2.setBackground(Color.WHITE);
+
 		c.insets = new Insets(0,1,0,1);
-	    //c.insets = new Insets(20,20,20,20);(Mario)
+		//c.insets = new Insets(20,20,20,20);(Mario)
 		c.anchor = GridBagConstraints.SOUTH;
-		
+
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-						//activates startSort with user selections for the two arrays(Waleed)
-						SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
-					}
-			
-				});
-		
-		
+				//activates startSort with user selections for the two arrays(Waleed)
+				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
+			}
+		});
 
 		//Activates stopSort from SortingVisualizer(Waleed)
 		stop.addActionListener(new ActionListener() {
@@ -107,11 +108,28 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.stopSort((String) selection.getSelectedItem());
 			}
 		});
-
+		
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					//Create the window. 
+					JFrame frame = new JFrame("Help Menu");
+					//Text in window
+					JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER); 
+					textLabel.setPreferredSize(new Dimension(250, 250)); 
+					frame.getContentPane().add(textLabel, BorderLayout.CENTER); 
+					//Display the window 
+					frame.setLocationRelativeTo(null); 
+					frame.pack(); 
+					frame.setVisible(true); 
+					//Creates Message Window with default OK button to close
+					//JOptionPane.showMessageDialog(null, "Text is placed here");
+			}
+		});
+		
 		speed.setMinorTickSpacing(10);
 		speed.setMajorTickSpacing(100);
 		speed.setPaintTicks(true);
-		
+
 		speed.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				speedVal.setText(("Speed: " + Integer.toString(speed.getValue()) + "ms"));
@@ -119,11 +137,11 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sleep = speed.getValue();
 			}
 		});
-		
+
 		size.setMinorTickSpacing(10);
 		size.setMajorTickSpacing(100);
 		size.setPaintTicks(true);
-		
+
 		size.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				sizeVal.setText(("Size: " + Integer.toString(size.getValue()) + " values"));
@@ -131,7 +149,8 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sortDataCount = size.getValue();
 			}
 		});
-		
+
+		//Buttons are visually created in top-down order
 		buttonWrapper.add(selection);
 		buttonWrapper.add(start);
 		buttonWrapper.add(stop); //Button for stop sort(Waleed)
@@ -140,20 +159,20 @@ public class VisualizerElements extends JFrame {
 		buttonWrapper.add(sizeVal);
 		buttonWrapper.add(size);
 		buttonWrapper.add(selection2);//2nd array (Mario)
-		
+		buttonWrapper.add(help);
+
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper, BorderLayout.WEST);
 		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear(Waleed)
-		
+
 		add(wrapper);
 
 		setExtendedState(JFrame.MAXIMIZED_BOTH );
-		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 	}
-	
+
 	//Draws the first array
 	public void preDrawArray(Integer[] squares){
 		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
@@ -164,25 +183,25 @@ public class VisualizerElements extends JFrame {
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
 			squarePanels[i].setBackground(Color.blue);
 			arrayWrapper.add(squarePanels[i], c);
-			
+
 		}
 		repaint();
 		validate();
 	}
-	
+
 	public void reDrawArray(Integer[] x){
 		reDrawArray(x, -1);
 	}
-	
+
 	public void reDrawArray(Integer[] x, int y){
 		reDrawArray(x, y, -1);
 	}
-	
+
 	public void reDrawArray(Integer[] x, int y, int z){
 		reDrawArray(x, y, z, -1);
 	}
-	
-	
+
+
 	public void reDrawArray(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper.removeAll();
 		for(int i = 0; i<squarePanels.length; i++){
@@ -207,7 +226,7 @@ public class VisualizerElements extends JFrame {
 	public void preDrawArray2(Integer[] squares){
 		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
 		arrayWrapper2.removeAll();
-		
+
 		sizeModifier =  (int) ((getHeight()*0.9)/(squarePanels.length));
 		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
 			squarePanels[i] = new JPanel();
@@ -218,20 +237,20 @@ public class VisualizerElements extends JFrame {
 		repaint();
 		validate();
 	}
-	
+
 	public void reDrawArray2(Integer[] x){
 		reDrawArray2(x, -1);
 	}
-	
+
 	public void reDrawArray2(Integer[] x, int y){
 		reDrawArray2(x, y, -1);
 	}
-	
+
 	public void reDrawArray2(Integer[] x, int y, int z){
 		reDrawArray2(x, y, z, -1);
 	}
-	
-	
+
+
 	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper2.removeAll();
 		for(int i = 0; i<squarePanels.length; i++){
@@ -251,6 +270,6 @@ public class VisualizerElements extends JFrame {
 		repaint();
 		validate();
 	}
-	
+
 }
 
