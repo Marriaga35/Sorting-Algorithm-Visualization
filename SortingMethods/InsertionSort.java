@@ -44,7 +44,7 @@ public class InsertionSort implements Runnable{
 			}
 			toBeSorted[insert] = temp;
 			frame.reDrawArray(toBeSorted, i);
-			frame.reDrawArray2(toBeSorted, i);
+			
 			try {
 				Thread.sleep(SortingVisualizer.sleep);
 			} catch (InterruptedException e) {
@@ -68,7 +68,7 @@ public class InsertionSort implements Runnable{
 					break;
 				}
 				frame.reDrawArray(toBeSorted, i, insert);
-				frame.reDrawArray2(toBeSorted, i, insert);
+				
 				try {
 					Thread.sleep(SortingVisualizer.sleep);
 				} catch (InterruptedException e) {
@@ -82,6 +82,6 @@ public class InsertionSort implements Runnable{
 			}
 			toBeSorted[insert] = temp;
 		}
-		frame.reDrawArray2(toBeSorted);
+		frame.reDrawArray(toBeSorted);
 	}
 }

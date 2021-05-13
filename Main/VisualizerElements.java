@@ -23,6 +23,7 @@ import javax.swing.event.ChangeListener;
 @SuppressWarnings("serial")
 public class VisualizerElements extends JFrame {
 
+	protected static final String String = null;
 	private final int MAX_SPEED = 1000;
 	private final int MIN_SPEED = 1;
 	private final int MAX_SIZE = 500;
@@ -30,8 +31,8 @@ public class VisualizerElements extends JFrame {
 	private final int DEFAULT_SPEED = 20;
 	private final int DEFAULT_SIZE = 20;
 	
-	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection"};
-	
+	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection", };
+	private final String[] Sorts2 = {"Bubble", "Insertion", "Merge", "Selection"};
 	private int sizeModifier;
 
 	private JPanel wrapper; //contains both arrayWrapper and buttonWrapper
@@ -67,7 +68,8 @@ public class VisualizerElements extends JFrame {
 		c = new GridBagConstraints();
 		
 		for(String s : Sorts) selection.addItem(s);
-		for(String s : Sorts) selection2.addItem(s); //Second Array (Mario)
+		for(String s2 : Sorts2) selection2.addItem(s2); //Second Array (Mario)
+		
 		/*Sets FlowLayout to keep array panel at a fixed size
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
@@ -84,15 +86,19 @@ public class VisualizerElements extends JFrame {
 	    arrayWrapper2.setBackground(Color.WHITE);
         
 		
-	    c.insets = new Insets(0,1,0,1);
+	    c.insets = new Insets(20,20,20,20);
 		c.anchor = GridBagConstraints.SOUTH;
 		
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SortingVisualizer.startSort((String) selection.getSelectedItem());
-				SortingVisualizer.startSort((String) selection2.getSelectedItem()); //2nd array (Mario)
+			
+						SortingVisualizer.startSort((String) selection.getSelectedItem());
+						SortingVisualizer.startSort2((String) selection2.getSelectedItem());			
 			}
-		});
+			
+					});
+		
+		
 
 		//Activates stopSort from SortingVisualizer(Waleed)
 		stop.addActionListener(new ActionListener() {

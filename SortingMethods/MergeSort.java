@@ -46,7 +46,7 @@ public class MergeSort implements Runnable{
             lt++;  mid++;  rt++;
          }
          SortingVisualizer.frame.reDrawArray(x, mid, rt, lt);
-         SortingVisualizer.frame.reDrawArray2(x, mid, rt, lt);
+        
 			try {
 				Thread.sleep(SortingVisualizer.sleep);
 			} catch (InterruptedException e) {
