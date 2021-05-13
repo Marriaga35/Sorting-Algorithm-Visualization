@@ -115,7 +115,7 @@ public class VisualizerElements extends JFrame {
 					JFrame frame = new JFrame("Help Menu");
 					//Text in window
 					JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER); 
-					textLabel.setPreferredSize(new Dimension(250, 250)); 
+					textLabel.setPreferredSize(new Dimension(500, 250)); 
 					frame.getContentPane().add(textLabel, BorderLayout.CENTER); 
 					//Display the window 
 					frame.setLocationRelativeTo(null); 
