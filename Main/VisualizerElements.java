@@ -3,9 +3,11 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;//(Mario)
@@ -32,7 +34,7 @@ public class VisualizerElements extends JFrame {
 	private final int DEFAULT_SIZE = 20;
 
 	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection", };
-	//private final String[] Sorts2 = {"Bubble", "Insertion", "Merge", "Selection"};(Mario)
+	
 	private int sizeModifier;
 
 	private JPanel wrapper; //contains both arrayWrapper and buttonWrapper
@@ -71,28 +73,24 @@ public class VisualizerElements extends JFrame {
 
 		for(String s : Sorts) selection.addItem(s);
 		for(String s : Sorts) selection2.addItem(s);//(Waleed)
-		//for(String s2 : Sorts2) selection2.addItem(s2); //Second Array (Mario)
-
+		
 		/*Sets FlowLayout to keep array panel at a fixed size
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
 		 */
-		//arrayWrapper.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
-		//arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
-
+		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
 		arrayWrapper.setLayout(new GridBagLayout());
 		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
 
 
 		//Set borders around both array 1 and 2. (Mario)
-		//arrayWrapper.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-		// arrayWrapper2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-		// arrayWrapper.setBackground(Color.WHITE);
-		//arrayWrapper2.setBackground(Color.WHITE);
+		arrayWrapper.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+		arrayWrapper2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+		arrayWrapper.setBackground(Color.WHITE);
+		arrayWrapper2.setBackground(Color.WHITE);
 
 		c.insets = new Insets(0,1,0,1);
-		//c.insets = new Insets(20,20,20,20);(Mario)
 		c.anchor = GridBagConstraints.SOUTH;
 
 		start.addActionListener(new ActionListener() {
@@ -204,6 +202,9 @@ public class VisualizerElements extends JFrame {
 
 	public void reDrawArray(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper.removeAll();
+		
+		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
+		
 		for(int i = 0; i<squarePanels.length; i++){
 			squarePanels[i] = new JPanel();
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
@@ -253,6 +254,8 @@ public class VisualizerElements extends JFrame {
 
 	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper2.removeAll();
+		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
+		
 		for(int i = 0; i<squarePanels.length; i++){
 			squarePanels[i] = new JPanel();
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
