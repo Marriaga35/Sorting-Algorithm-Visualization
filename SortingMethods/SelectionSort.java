@@ -1,3 +1,6 @@
+//Most of the code is not our original work
+//Any code added will be signed by the contributor who did the work
+
 package SortingMethods;
 
 import Main.*;
