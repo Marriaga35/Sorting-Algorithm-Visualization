@@ -4,18 +4,19 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;//(Mario)
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
@@ -34,7 +35,7 @@ public class VisualizerElements extends JFrame {
 	private final int DEFAULT_SIZE = 20;
 
 	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection", };
-	
+
 	private int sizeModifier;
 
 	private JPanel wrapper; //contains both arrayWrapper and buttonWrapper
@@ -45,6 +46,7 @@ public class VisualizerElements extends JFrame {
 	private JButton start;//Start Sort Button
 	private JButton stop;//Stop sort button(Waleed)
 	private JButton help;//Help Button
+	private JButton print;
 	private JComboBox<String> selection;
 	private JComboBox<String> selection2; //second array sort (Mario)
 	private JSlider speed;
@@ -59,6 +61,7 @@ public class VisualizerElements extends JFrame {
 		start = new JButton("Start");
 		stop = new JButton("Stop");//Stop button created(Waleed)
 		help = new JButton("Help");
+		print = new JButton("Print");
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
 		arrayWrapper2 = new JPanel();//Second array created(Waleed)
@@ -73,7 +76,7 @@ public class VisualizerElements extends JFrame {
 
 		for(String s : Sorts) selection.addItem(s);
 		for(String s : Sorts) selection2.addItem(s);//(Waleed)
-		
+
 		/*Sets FlowLayout to keep array panel at a fixed size
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
@@ -112,17 +115,28 @@ public class VisualizerElements extends JFrame {
 				//Create the window. 
 				JFrame frame = new JFrame("Help Menu");
 				//Text in window
-				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER); 
-				textLabel.setPreferredSize(new Dimension(500, 250)); 
-				frame.getContentPane().add(textLabel, BorderLayout.CENTER); 
+				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER);
+				//textLabel.setPreferredSize(new Dimension(500, 250));
+				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
 				//Display the window 
-				frame.setLocationRelativeTo(null); 
-				frame.pack(); 
-				frame.setVisible(true); 
-				//Creates Message Window with default OK button to close
-				//JOptionPane.showMessageDialog(null, "Text is placed here");
+				frame.setLocationRelativeTo(null);
+				frame.pack();
+				frame.setVisible(true);
 			}
 		});
+		/*
+
+		print.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					print.print(null);
+				}
+				catch (java.awt.print.PrinterException e)
+				{
+					System.err.format("No Printer Found", e.getMessage());
+				}
+			}
+		});*/
 
 		speed.setMinorTickSpacing(10);
 		speed.setMajorTickSpacing(100);
@@ -158,6 +172,7 @@ public class VisualizerElements extends JFrame {
 		buttonWrapper.add(size);
 		buttonWrapper.add(selection2);//2nd array (Mario)
 		buttonWrapper.add(help);
+		buttonWrapper.add(print);
 
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper, BorderLayout.WEST);
@@ -202,9 +217,9 @@ public class VisualizerElements extends JFrame {
 
 	public void reDrawArray(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper.removeAll();
-		
+
 		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
-		
+
 		for(int i = 0; i<squarePanels.length; i++){
 			squarePanels[i] = new JPanel();
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
@@ -255,7 +270,7 @@ public class VisualizerElements extends JFrame {
 	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
 		arrayWrapper2.removeAll();
 		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
-		
+
 		for(int i = 0; i<squarePanels.length; i++){
 			squarePanels[i] = new JPanel();
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
@@ -272,6 +287,7 @@ public class VisualizerElements extends JFrame {
 		}
 		repaint();
 		validate();
+
 	}
 
 }
