@@ -59,6 +59,7 @@ public class testing {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame("Sorting Algorithm Visualizer");
 		frame.getContentPane().setBackground(new Color(204, 204, 204));
@@ -145,6 +146,7 @@ public class testing {
 		lblSortMethod.setBounds(130, 72, 100, 20);
 		frame.getContentPane().add(lblSortMethod);
 
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
 		comboBox.setMaximumRowCount(4);
 		comboBox.setToolTipText("Select from list to choose first sorting method.");
@@ -156,6 +158,7 @@ public class testing {
 		lblSortMethod_1.setBounds(425, 72, 100, 20);
 		frame.getContentPane().add(lblSortMethod_1);
 
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setMaximumRowCount(4);
 		comboBox_1.setToolTipText("Select from list to choose second sorting method.");
@@ -246,6 +249,9 @@ public class testing {
 		panel.setBounds(38, 102, 363, 236);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNorthLabelTemp = new JLabel("North Label Temp");
+		panel.add(lblNorthLabelTemp, BorderLayout.NORTH);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(425, 102, 363, 236);
@@ -253,7 +259,7 @@ public class testing {
 		panel_1.setLayout(new BorderLayout(0, 0));
 
 		/* ============ Adding All Listeners Here =================*/
-
+		/*
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//activates startSort with user selections for the two arrays(Waleed)
@@ -391,5 +397,6 @@ public class testing {
 
 }
 
-
+*/
+}
 }
