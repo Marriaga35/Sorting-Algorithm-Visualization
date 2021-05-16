@@ -46,7 +46,7 @@ public class VisualizerElements extends JFrame {
 	private JPanel buttonWrapper; //contain Buttons
 	private JPanel[] squarePanels;//draws boxes which make up the array
 	private JButton start;//Start Sort Button
-	private JButton stop;//Stop Sort button(Waleed)
+	private JButton pause;//Pause button(Waleed)
 	private JButton help;//Help Button
 	private JButton print;
 	private JComboBox<String> selection;
@@ -61,7 +61,7 @@ public class VisualizerElements extends JFrame {
 		super("Sorting Visualizer");
 
 		start = new JButton("Start");
-		stop = new JButton("Stop");//Stop button created(Waleed)
+		pause = new JButton("Pause");//Stop button created(Waleed)
 		help = new JButton("Help");
 		print = new JButton("Print");
 		buttonWrapper = new JPanel();
@@ -106,9 +106,10 @@ public class VisualizerElements extends JFrame {
 		});
 
 		//Activates stopSort from SortingVisualizer(Waleed)
-		stop.addActionListener(new ActionListener() {
+		//Used a boolean to aid in determining whether to pause or continue the sort
+		pause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SortingVisualizer.stopSort((String) selection.getSelectedItem());
+				SortingVisualizer.stopSort(true);
 			}
 		});
 
@@ -167,7 +168,7 @@ public class VisualizerElements extends JFrame {
 		//Buttons are visually created in top-down order
 		buttonWrapper.add(selection);
 		buttonWrapper.add(start);
-		buttonWrapper.add(stop); //Button for stop sort(Waleed)
+		buttonWrapper.add(pause); //Button for pause(Waleed)
 		buttonWrapper.add(speedVal);
 		buttonWrapper.add(speed);
 		buttonWrapper.add(sizeVal);

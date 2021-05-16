@@ -11,6 +11,7 @@ import SortingMethods.*;
 public class SortingVisualizer {
 	
 	private static Thread sortingThread;
+	private static Thread sortingThread2;//Added sortingThread2 to process different start/stop calls(Waleed)
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
@@ -53,8 +54,8 @@ public class SortingVisualizer {
 	
 	public static void startSort(String type, String type2){
 		//Added String type2 to accept user choice for both arrays(Waleed)
-
-		if (sortingThread == null || !isSorting){
+		//Inclusion of sortingThread2
+		if (sortingThread == null || sortingThread2 == null || !isSorting){
 			
 			resetArray();
 			
@@ -88,19 +89,19 @@ public class SortingVisualizer {
 			//Reads user's second choice
 			switch(type2){
 			case "Bubble":
-				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, false));
+				sortingThread2 = new Thread(new BubbleSort(toBeSorted, frame, false));
 				break;
 				
 			case "Insertion":
-				sortingThread = new Thread(new InsertionSort(toBeSorted, frame, false));
+				sortingThread2 = new Thread(new InsertionSort(toBeSorted, frame, false));
 				break;
 				
 			case "Merge":
-				sortingThread = new Thread(new MergeSort(false));
+				sortingThread2 = new Thread(new MergeSort(false));
 				break;	
 				
 			case "Selection":
-				sortingThread = new Thread(new SelectionSort(toBeSorted, frame, false));
+				sortingThread2 = new Thread(new SelectionSort(toBeSorted, frame, false));
 				break;
 				
 			default:
@@ -108,7 +109,7 @@ public class SortingVisualizer {
 				return;
 			}
 			
-			sortingThread.start();
+			sortingThread2.start();
 			
 		}
 		
@@ -154,12 +155,20 @@ public class SortingVisualizer {
 			}
 	}*/
 
-	//Stops the sorting algorithm(Waleed)
-	@SuppressWarnings("deprecation")
-	public static void stopSort(String selectedItem) {
-		
-		sortingThread.stop();
-		sortingThread = null;
+	//int x = 1 serves as a secondary condition to pass(Waleed)
+	//The two conditions determine whether the sorting process will pause or continue
+	static int x = 1;
+	public static void stopSort(Boolean pause) {
+		if (pause == true && x == 1) {
+			sortingThread.suspend();
+			sortingThread2.suspend();
+			x++;
+		}
+		else {
+			sortingThread.resume();
+			sortingThread2.resume();
+			x--;
+		}
 		
 	}
 
