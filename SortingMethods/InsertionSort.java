@@ -10,6 +10,8 @@ public class InsertionSort implements Runnable{
 	private Integer[] toBeSorted;
 	private VisualizerElements frame;
 	private boolean firstarray;
+	//I added a boolean to aid the program in determining which array to sort(Waleed)
+	//True is for first array, False is for second array(Waleed)
 	
 	public InsertionSort(Integer[] toBeSorted, VisualizerElements frame, boolean firstarray) {
 		this.toBeSorted = toBeSorted;
