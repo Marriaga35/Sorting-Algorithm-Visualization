@@ -52,7 +52,8 @@ public class SortingVisualizer {
 	}
 	
 	public static void startSort(String type, String type2){
-		
+		//Added String type2 to accept user choice for both arrays(Waleed)
+
 		if (sortingThread == null || !isSorting){
 			
 			resetArray();
