@@ -6,15 +6,14 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
+import java.awt.FlowLayout;//(Mario)
+import java.awt.Graphics;//(Mario)
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.LayoutManager;
+import java.awt.LayoutManager;//(Mario)
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;//(Mario)
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
+import javax.swing.SwingConstants;//(Mario)
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -45,9 +44,9 @@ public class VisualizerElements extends JFrame {
 	private JPanel arrayWrapper; //contains Array
 	private JPanel arrayWrapper2;//Second array (Waleed)
 	private JPanel buttonWrapper; //contain Buttons
-	private JPanel[] squarePanels;
+	private JPanel[] squarePanels;//draws boxes which make up the array
 	private JButton start;//Start Sort Button
-	private JButton stop;//Stop sort button(Waleed)
+	private JButton stop;//Stop Sort button(Waleed)
 	private JButton help;//Help Button
 	private JButton print;
 	private JComboBox<String> selection;
@@ -84,7 +83,7 @@ public class VisualizerElements extends JFrame {
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
 		 */
-		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
+		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
 		arrayWrapper.setLayout(new GridBagLayout());
 		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
