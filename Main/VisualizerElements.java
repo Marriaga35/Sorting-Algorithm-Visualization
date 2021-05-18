@@ -100,14 +100,11 @@ public class VisualizerElements extends JFrame {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//I included selection2.getSelectedItem() (Waleed)
-				//The sorting method chosen from selection2 determines the method which will be applied to the second array(Waleed)
 				//activates startSort with user selections for the two arrays(Waleed)
 				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
 			}
 		});
 
-		//I created the pause button(Waleed)
 		//Activates stopSort from SortingVisualizer(Waleed)
 		//Used a boolean to aid in determining whether to pause or continue the sort
 		pause.addActionListener(new ActionListener() {
@@ -244,9 +241,6 @@ public class VisualizerElements extends JFrame {
 		validate();
 	}
 
-	//I incorporated the preDrawArray2 and reDrawArray2 functions(Waleed)
-	//These are based on the already existing functions: preDrawArray and reDrawArray(Waleed)
-	//I simply replaced arrayWrapper with arrayWrapper2(Waleed)
 	//Draws the second array(Waleed)
 	public void preDrawArray2(Integer[] squares){
 		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
