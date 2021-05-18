@@ -172,7 +172,13 @@ public class VisualizerElements extends JFrame {
 				//Create the window. 
 				JFrame frame = new JFrame("Help Menu");
 				//Text in window
-				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER);
+				JLabel textLabel = new JLabel("<html>This program serves as a tool to visualize sorting algorithms in real time."
+						+ "<br/><br/>1) Select your algorithms to compare using the dropdown menus above each graph. The default is Bubble Sort."
+						+ "<br/><br/>2) Select your desired dataset size using the slider above the right graph."
+						+ "<br/><br/>3) You can select your desired speed of the visual using the slider above the left graph."
+						+ "<br/>It's purely cosmetic and has no effect on the actual sort time of the algorithm. It can also be changed while the sort is in progress."
+						+ "<br/><br/>4) Use the 'Start' button to begin the sort, and use the pause button to pause/resume the sort while it's in progress."
+						+ "</html>",SwingConstants.CENTER);//These are the instructions provided by the help menu (Kyle)
 				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
 				//Display the window 
 				frame.setLocationRelativeTo(null);
