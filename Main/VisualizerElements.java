@@ -45,7 +45,6 @@ import javax.swing.Timer;
 @SuppressWarnings({ "serial", "unused" })
 public class VisualizerElements extends JFrame {
 
-	
 	private final int MAX_SPEED = 1000;
 	private final int MIN_SPEED = 1;
 	private final int MAX_SIZE = 500;
@@ -73,7 +72,6 @@ public class VisualizerElements extends JFrame {
 	private JSlider size;
 	private JLabel speedVal;
 	private JLabel sizeVal;
-	private long timer1;
 	private GridBagConstraints c;
 
 	public VisualizerElements(){
@@ -121,6 +119,7 @@ public class VisualizerElements extends JFrame {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				
 				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
 			}
@@ -151,12 +150,35 @@ public class VisualizerElements extends JFrame {
 						+ "<html>Print         - Print the results of Algorithm comparison. <br/>"
 						+ "<html>Save          - Save results to local file system. "
 						+ "");
-				
+
+				//I included selection2.getSelectedItem() (Waleed)
+				//The sorting method chosen from selection2 determines the method which will be applied to the second array(Waleed)
+				//activates startSort with user selections for the two arrays(Waleed)
+				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
+			}
+		});
+
+		//I created the pause button(Waleed)
+		//Activates stopSort from SortingVisualizer(Waleed)
+		//Used a boolean to aid in determining whether to pause or continue the sort
+		pause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SortingVisualizer.stopSort(true);
+			}
+		});
+
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Create the window. 
+				JFrame frame = new JFrame("Help Menu");
+				//Text in window
+				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER);
 				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
 				//Display the window 
 				frame.setLocationRelativeTo(null);
 				frame.pack();
 				frame.setVisible(true);
+
 			}
 		});
 		/*
@@ -206,6 +228,21 @@ public class VisualizerElements extends JFrame {
 	
 
 
+			}
+		});
+
+		speed.setMinorTickSpacing(10);
+		speed.setMajorTickSpacing(100);
+		speed.setPaintTicks(true);
+
+		speed.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				speedVal.setText(("Speed: " + Integer.toString(speed.getValue()) + "ms"));
+				validate();
+				SortingVisualizer.sleep = speed.getValue();
+			}
+		});
+
 		size.setMinorTickSpacing(10);
 		size.setMajorTickSpacing(100);
 		size.setPaintTicks(true);
@@ -231,7 +268,6 @@ public class VisualizerElements extends JFrame {
 		buttonWrapper.add(print);
 		buttonWrapper.add(save);//(Mario)
 		
-	
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper, BorderLayout.WEST);
 		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear(Waleed)
@@ -277,7 +313,7 @@ public class VisualizerElements extends JFrame {
 		arrayWrapper.removeAll();
 
 		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
-		
+
 		for(int i = 0; i<squarePanels.length; i++){
 			squarePanels[i] = new JPanel();
 			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
@@ -297,6 +333,11 @@ public class VisualizerElements extends JFrame {
 		repaint();
 		validate();
 	}
+
+
+	//I incorporated the preDrawArray2 and reDrawArray2 functions(Waleed)
+	//These are based on the already existing functions: preDrawArray and reDrawArray(Waleed)
+	//I simply replaced arrayWrapper with arrayWrapper2(Waleed)
 
 	//Draws the second array(Waleed)
 	public void preDrawArray2(Integer[] squares){
