@@ -62,6 +62,10 @@ public class SortingVisualizer {
 			isSorting = true;
 
 			//Reads user's first choice
+			//This code belongs to the original user but I included the Boolean element to it
+			//By adding “true” I am able to aid the program in discerning between which array to apply the sorting method to (Waleed)
+			//true refers to the first array, false refers to the second array
+
 			switch(type){
 			case "Bubble":
 				sortingThread = new Thread(new BubbleSort(toBeSorted, frame, true));
@@ -87,6 +91,9 @@ public class SortingVisualizer {
 			sortingThread.start();
 
 			//Reads user's second choice
+			//This was not part of the original author’s code but it is based on the same concept as described above (Waleed)
+			//This corresponds to the second array
+
 			switch(type2){
 			case "Bubble":
 				sortingThread2 = new Thread(new BubbleSort(toBeSorted, frame, false));
@@ -155,6 +162,7 @@ public class SortingVisualizer {
 			}
 	}*/
 
+	//Inclusion of pause button(Waleed)
 	//int x = 1 serves as a secondary condition to pass(Waleed)
 	//The two conditions determine whether the sorting process will pause or continue
 	static int x = 1;
