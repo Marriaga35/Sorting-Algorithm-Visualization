@@ -3,6 +3,7 @@
 
 package Main;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -11,27 +12,37 @@ import SortingMethods.*;
 public class SortingVisualizer {
 	
 	private static Thread sortingThread;
-	private static Thread sortingThread2;//Added sortingThread2 to process different start/stop calls(Waleed)
+	private static Thread sortingThread2;
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
-	public static int sortDataCount = 3;
+	public static int sortDataCount = 20;
 	public static int sleep = 20;
 	public static int blockWidth;
 	
 	public static boolean stepped = false;
 	
 	public static void main(String[] args) {
-		frame = new VisualizerElements();
-		resetArray();
-		frame.setLocationRelativeTo(null);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					frame = new VisualizerElements();
+					resetArray();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
 	
 	public static void resetArray(){
 		
 		if (isSorting) return;
+		System.out.println("Array has been Reset");
 		toBeSorted = new Integer[sortDataCount];
-		blockWidth = (int) Math.max(Math.floor(500/sortDataCount), 1);
+		blockWidth = 310/sortDataCount;//(int) Math.max(Math.floor(500/sortDataCount), 1);
 		for(int i = 0; i<toBeSorted.length; i++){
 			if (stepped) {
 				toBeSorted[i] = i;
