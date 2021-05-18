@@ -15,7 +15,7 @@ public class SortingVisualizer {
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
-	public static int sortDataCount = 20;
+	public static int sortDataCount = 3;
 	public static int sleep = 20;
 	public static int blockWidth;
 	
@@ -55,11 +55,13 @@ public class SortingVisualizer {
 	public static void startSort(String type, String type2){
 		//Added String type2 to accept user choice for both arrays(Waleed)
 		//Inclusion of sortingThread2
+
 		if (sortingThread == null || sortingThread2 == null || !isSorting){
 			
 			resetArray();
 			
 			isSorting = true;
+			System.out.println(type);
 
 			//Reads user's first choice
 			//This code belongs to the original user but I included the Boolean element to it
@@ -94,6 +96,8 @@ public class SortingVisualizer {
 			//This was not part of the original author’s code but it is based on the same concept as described above (Waleed)
 			//This corresponds to the second array
 
+			System.out.println(type2);
+			
 			switch(type2){
 			case "Bubble":
 				sortingThread2 = new Thread(new BubbleSort(toBeSorted, frame, false));
@@ -166,6 +170,7 @@ public class SortingVisualizer {
 	//int x = 1 serves as a secondary condition to pass(Waleed)
 	//The two conditions determine whether the sorting process will pause or continue
 	static int x = 1;
+	@SuppressWarnings("deprecation")
 	public static void stopSort(Boolean pause) {
 		if (pause == true && x == 1) {
 			sortingThread.suspend();
