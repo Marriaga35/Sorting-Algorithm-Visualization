@@ -1,3 +1,6 @@
+//Most of the code is not our original work
+//Any code added will be signed by the contributor who did the work
+
 package SortingMethods;
 
 import Main.*;
@@ -7,6 +10,8 @@ public class BubbleSort implements Runnable{
 	private Integer[] toBeSorted;
 	private VisualizerElements frame;
 	private boolean firstarray;
+	//I added a boolean to aid the program in determining which array to sort(Waleed)
+	//True is for first array, False is for second array(Waleed)
 	
 	public BubbleSort(Integer[] toBeSorted, VisualizerElements frame, boolean firstarray) {
 		this.toBeSorted = toBeSorted;

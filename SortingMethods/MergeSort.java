@@ -1,3 +1,6 @@
+//Most of the code is not our original work
+//Any code added will be signed by the contributor who did the work
+
 package SortingMethods;
 
 import Main.*;
@@ -5,7 +8,9 @@ import Main.*;
 public class MergeSort implements Runnable{
    
    private boolean firstarray;
-
+   //I added a boolean to aid the program in determining which array to sort(Waleed)
+   //True is for first array, False is for second array(Waleed)
+   
    public MergeSort(boolean firstarray) {
       this.firstarray = firstarray;
    }

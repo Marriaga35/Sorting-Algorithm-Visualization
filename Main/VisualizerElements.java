@@ -1,17 +1,19 @@
+//Most of the code is not our original work
+//Any code added will be signed by the contributor who did the work
+
 package Main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
+import java.awt.FlowLayout;//(Mario)
+import java.awt.Graphics;//(Mario)
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.LayoutManager;
+import java.awt.LayoutManager;//(Mario)
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.BorderFactory;//(Mario)
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
-import javax.swing.SwingConstants;
+import javax.swing.SwingConstants;//(Mario)
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -42,9 +44,9 @@ public class VisualizerElements extends JFrame {
 	private JPanel arrayWrapper; //contains Array
 	private JPanel arrayWrapper2;//Second array (Waleed)
 	private JPanel buttonWrapper; //contain Buttons
-	private JPanel[] squarePanels;
+	private JPanel[] squarePanels;//draws boxes which make up the array
 	private JButton start;//Start Sort Button
-	private JButton stop;//Stop sort button(Waleed)
+	private JButton pause;//Pause button(Waleed)
 	private JButton help;//Help Button
 	private JButton print;
 	private JComboBox<String> selection;
@@ -59,7 +61,7 @@ public class VisualizerElements extends JFrame {
 		super("Sorting Visualizer");
 
 		start = new JButton("Start");
-		stop = new JButton("Stop");//Stop button created(Waleed)
+		pause = new JButton("Pause");//Stop button created(Waleed)
 		help = new JButton("Help");
 		print = new JButton("Print");
 		buttonWrapper = new JPanel();
@@ -81,7 +83,7 @@ public class VisualizerElements extends JFrame {
 		 * prevents it from expanding when size of array is increased
 		 * (Mario)
 		 */
-		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));//Layout for second array(Waleed)
+		arrayWrapper2.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
 		arrayWrapper.setLayout(new GridBagLayout());
 		arrayWrapper2.setLayout(new GridBagLayout());//Layout for second array(Waleed)
 		wrapper.setLayout(new BorderLayout());
@@ -98,15 +100,19 @@ public class VisualizerElements extends JFrame {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//I included selection2.getSelectedItem() (Waleed)
+				//The sorting method chosen from selection2 determines the method which will be applied to the second array(Waleed)
 				//activates startSort with user selections for the two arrays(Waleed)
 				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
 			}
 		});
 
+		//I created the pause button(Waleed)
 		//Activates stopSort from SortingVisualizer(Waleed)
-		stop.addActionListener(new ActionListener() {
+		//Used a boolean to aid in determining whether to pause or continue the sort
+		pause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SortingVisualizer.stopSort((String) selection.getSelectedItem());
+				SortingVisualizer.stopSort(true);
 			}
 		});
 
@@ -165,7 +171,7 @@ public class VisualizerElements extends JFrame {
 		//Buttons are visually created in top-down order
 		buttonWrapper.add(selection);
 		buttonWrapper.add(start);
-		buttonWrapper.add(stop); //Button for stop sort(Waleed)
+		buttonWrapper.add(pause); //Button for pause(Waleed)
 		buttonWrapper.add(speedVal);
 		buttonWrapper.add(speed);
 		buttonWrapper.add(sizeVal);
@@ -238,6 +244,9 @@ public class VisualizerElements extends JFrame {
 		validate();
 	}
 
+	//I incorporated the preDrawArray2 and reDrawArray2 functions(Waleed)
+	//These are based on the already existing functions: preDrawArray and reDrawArray(Waleed)
+	//I simply replaced arrayWrapper with arrayWrapper2(Waleed)
 	//Draws the second array(Waleed)
 	public void preDrawArray2(Integer[] squares){
 		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
