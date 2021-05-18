@@ -127,7 +127,7 @@ public class VisualizerElements extends JFrame {
 						+ "<br/><br/>3) You can select your desired speed of the visual using the slider above the left graph."
 						+ "<br/>It's purely cosmetic and has no effect on the actual sort time of the algorithm. It can also be changed while the sort is in progress."
 						+ "<br/><br/>4) Use the 'Start' button to begin the sort, and use the pause button to pause/resume the sort while it's in progress."
-						+ "</html>", SwingConstants.CENTER);//These are the instructions provided by the help menu (Kyle)
+						+ "</html>",SwingConstants.CENTER);//These are the instructions provided by the help menu (Kyle)
 				//textLabel.setPreferredSize(new Dimension(500, 250));
 				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
 				//Display the window 
