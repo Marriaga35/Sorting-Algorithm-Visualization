@@ -8,15 +8,30 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;//(Mario)
 import java.awt.Graphics;//(Mario)
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;//(Mario)
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.DataOutput;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Writer;
+
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;//(Mario)
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -24,11 +39,12 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;//(Mario)
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileSystemView;
+import javax.swing.Timer;
 
 @SuppressWarnings({ "serial", "unused" })
 public class VisualizerElements extends JFrame {
 
-	//protected static final String String = null; (Mario)
 	private final int MAX_SPEED = 1000;
 	private final int MIN_SPEED = 1;
 	private final int MAX_SIZE = 500;
@@ -48,6 +64,7 @@ public class VisualizerElements extends JFrame {
 	private JButton start;//Start Sort Button
 	private JButton pause;//Pause button(Waleed)
 	private JButton help;//Help Button
+	private JButton save;//Save file(Mario)
 	private JButton print;
 	private JComboBox<String> selection;
 	private JComboBox<String> selection2; //second array sort (Mario)
@@ -64,6 +81,7 @@ public class VisualizerElements extends JFrame {
 		pause = new JButton("Pause");//Stop button created(Waleed)
 		help = new JButton("Help");
 		print = new JButton("Print");
+		save = new JButton("Save");//Save button (Mario)
 		buttonWrapper = new JPanel();
 		arrayWrapper = new JPanel();
 		arrayWrapper2 = new JPanel();//Second array created(Waleed)
@@ -74,6 +92,7 @@ public class VisualizerElements extends JFrame {
 		size = new JSlider(MIN_SIZE, MAX_SIZE, DEFAULT_SIZE);
 		speedVal = new JLabel("Speed: 20 ms");
 		sizeVal = new JLabel("Size: 20 values");
+		 JLabel timeLabel = new JLabel();
 		c = new GridBagConstraints();
 
 		for(String s : Sorts) selection.addItem(s);
@@ -100,6 +119,38 @@ public class VisualizerElements extends JFrame {
 
 		start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				
+				SortingVisualizer.startSort((String) selection.getSelectedItem(), (String) selection2.getSelectedItem());			
+			}
+		});
+
+		/*Activates stopSort from SortingVisualizer(Waleed)
+		 * Used a boolean to aid in determining whether to pause or continue the sort
+		 * (Waleed)
+		 */
+		
+		pause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SortingVisualizer.stopSort(true);
+			}
+		});
+
+		help.addActionListener(new ActionListener() {            //(Gerardo)
+			public void actionPerformed(ActionEvent e) {
+				//Create the window. 
+				JFrame frame = new JFrame("Help Menu");
+				//Help option in  pop up window (Mario)
+				JLabel textLabel = new JLabel(
+						"<html>Sorting Options - Select two Sorting Methods to compare.<br/> "
+						+ "<html> Start        - Click start button to perform Algorithms. <br/>  "
+						+ "<html>Pause         - Select Pause stops to compare current results. <br/>"
+						+ "<html>Speed         - Adjust speed rate of algorithm.<br/>"
+						+ "<html>Size          - Adjust the size of data. <br/>"
+						+ "<html>Print         - Print the results of Algorithm comparison. <br/>"
+						+ "<html>Save          - Save results to local file system. "
+						+ "");
+
 				//I included selection2.getSelectedItem() (Waleed)
 				//The sorting method chosen from selection2 determines the method which will be applied to the second array(Waleed)
 				//activates startSort with user selections for the two arrays(Waleed)
@@ -122,12 +173,12 @@ public class VisualizerElements extends JFrame {
 				JFrame frame = new JFrame("Help Menu");
 				//Text in window
 				JLabel textLabel = new JLabel("TEMP: Example information placed here\n second line\n third line",SwingConstants.CENTER);
-				//textLabel.setPreferredSize(new Dimension(500, 250));
 				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
 				//Display the window 
 				frame.setLocationRelativeTo(null);
 				frame.pack();
 				frame.setVisible(true);
+
 			}
 		});
 		/*
@@ -143,6 +194,42 @@ public class VisualizerElements extends JFrame {
 				}
 			}
 		});*/
+		
+		 
+		
+		//Save button saves result comparisons data. (Mario)		
+		save.addActionListener((ActionListener) new ActionListener() {
+		
+		  public void actionPerformed(ActionEvent e){
+			  try {  
+				  				  
+			            
+			  //Saves results as a jpeg image.(Mario)
+			 JFrame frame = new JFrame("Save"); 
+			  BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+			  ImageIO.write(image,"jpeg", new File("D:\\Sorting Algorithm.jpeg"));
+			  Graphics2D graphics2D = image.createGraphics();
+			  frame.paint(graphics2D);		
+			  }catch(Exception evt){System.out.println(e);}    
+			  
+			
+		        
+			  JFrame frame = new JFrame("Save");
+			  JLabel textLabel = new JLabel("Save sucessful",SwingConstants.CENTER);
+			  frame.getContentPane().add(textLabel, BorderLayout.CENTER);
+			  frame.setLocationRelativeTo(null);
+			  frame.pack();
+		      frame.setVisible(true);
+	     }    
+
+
+
+		} );                        
+	
+
+
+			}
+		});
 
 		speed.setMinorTickSpacing(10);
 		speed.setMajorTickSpacing(100);
@@ -179,7 +266,8 @@ public class VisualizerElements extends JFrame {
 		buttonWrapper.add(selection2);//2nd array (Mario)
 		buttonWrapper.add(help);
 		buttonWrapper.add(print);
-
+		buttonWrapper.add(save);//(Mario)
+		
 		wrapper.add(buttonWrapper, BorderLayout.NORTH);
 		wrapper.add(arrayWrapper, BorderLayout.WEST);
 		wrapper.add(arrayWrapper2, BorderLayout.EAST );//Causes second array to appear(Waleed)
@@ -240,13 +328,17 @@ public class VisualizerElements extends JFrame {
 			}
 			arrayWrapper.add(squarePanels[i], c);
 		}
+	
+		
 		repaint();
 		validate();
 	}
 
+
 	//I incorporated the preDrawArray2 and reDrawArray2 functions(Waleed)
 	//These are based on the already existing functions: preDrawArray and reDrawArray(Waleed)
 	//I simply replaced arrayWrapper with arrayWrapper2(Waleed)
+
 	//Draws the second array(Waleed)
 	public void preDrawArray2(Integer[] squares){
 		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
