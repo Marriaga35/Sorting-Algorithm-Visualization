@@ -1,38 +1,29 @@
-//Most of the code is not our original work
-//Any code added will be signed by the contributor who did the work
-
 package Main;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-import javax.swing.JSlider;
 import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridBagLayout;
 
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.JSeparator;
-import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.JSeparator;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.FlowLayout;
 
 public class testing {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 
@@ -128,10 +119,10 @@ public class testing {
 		btnStart.setBounds(623, 20, 70, 29);
 		frame.getContentPane().add(btnStart);
 
-		JButton btnStop = new JButton("Stop");
-		btnStop.setToolTipText("Click to hault sorting.");
-		btnStop.setBounds(695, 20, 70, 29);
-		frame.getContentPane().add(btnStop);
+		JButton btnPause = new JButton("Pause");
+		btnPause.setToolTipText("Click to hault sorting.");
+		btnPause.setBounds(695, 20, 70, 29);
+		frame.getContentPane().add(btnPause);
 
 		/* ============ Center of Window Here ================*/
 
@@ -196,14 +187,17 @@ public class testing {
 		frame.getContentPane().add(lblDifference);
 
 		JLabel lblTime = new JLabel("Time 1");
+		lblTime.setToolTipText("Time took to sort using Method 1.");
 		lblTime.setBounds(194, 400, 61, 16);
 		frame.getContentPane().add(lblTime);
 
 		JLabel lblTime_1 = new JLabel("Time 2");
+		lblTime_1.setToolTipText("Time took to sort using Method 1");
 		lblTime_1.setBounds(194, 427, 61, 16);
 		frame.getContentPane().add(lblTime_1);
 
 		JLabel lblTimeDifference = new JLabel("Time Difference");
+		lblTimeDifference.setToolTipText("Difference between Time 1 and 2.");
 		lblTimeDifference.setBounds(194, 455, 110, 16);
 		frame.getContentPane().add(lblTimeDifference);
 
@@ -215,26 +209,38 @@ public class testing {
 		frame.getContentPane().add(lblPrintOptions);
 
 		JCheckBox chckbxSortTime = new JCheckBox("Sort Method 1");
+		chckbxSortTime.setToolTipText("When checked it will be displayed.");
+		chckbxSortTime.setSelected(true);
 		chckbxSortTime.setBounds(384, 396, 128, 23);
 		frame.getContentPane().add(chckbxSortTime);
 
 		JCheckBox chckbxSortTime_1 = new JCheckBox("Sort Method 2");
+		chckbxSortTime_1.setToolTipText("When checked it will be displayed.");
+		chckbxSortTime_1.setSelected(true);
 		chckbxSortTime_1.setBounds(384, 423, 128, 23);
 		frame.getContentPane().add(chckbxSortTime_1);
 
 		JCheckBox chckbxDataValues = new JCheckBox("Data Size & Values");
+		chckbxDataValues.setToolTipText("When checked it will be displayed.");
+		chckbxDataValues.setSelected(true);
 		chckbxDataValues.setBounds(384, 451, 148, 23);
 		frame.getContentPane().add(chckbxDataValues);
 
 		JCheckBox chckbxSortingMethods = new JCheckBox("Sort Time 1");
+		chckbxSortingMethods.setToolTipText("When checked it will be displayed.");
+		chckbxSortingMethods.setSelected(true);
 		chckbxSortingMethods.setBounds(541, 396, 148, 23);
 		frame.getContentPane().add(chckbxSortingMethods);
 
 		JCheckBox chckbxSortingMethod = new JCheckBox("Sort Time 2");
+		chckbxSortingMethod.setToolTipText("When checked it will be displayed.");
+		chckbxSortingMethod.setSelected(true);
 		chckbxSortingMethod.setBounds(541, 423, 148, 23);
 		frame.getContentPane().add(chckbxSortingMethod);
 
 		JCheckBox chckbxDifference = new JCheckBox("Time Difference");
+		chckbxDifference.setToolTipText("When checked it will be displayed.");
+		chckbxDifference.setSelected(true);
 		chckbxDifference.setBounds(541, 451, 133, 23);
 		frame.getContentPane().add(chckbxDifference);
 
@@ -251,155 +257,33 @@ public class testing {
 		JPanel panel = new JPanel();
 		panel.setBounds(38, 102, 363, 236);
 		frame.getContentPane().add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 1.0};
+		//gbl_panel.columnWidths = new int[]{0};
+		//gbl_panel.rowHeights = new int[]{0};
+		//gbl_panel.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0};
+		panel.setLayout(gbl_panel);
 		
-		JLabel lblNorthLabelTemp = new JLabel("North Label Temp");
-		panel.add(lblNorthLabelTemp, BorderLayout.NORTH);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(425, 102, 363, 236);
 		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel_5 = new JPanel();
+		panel_1.add(panel_5);
+		
+		JPanel panel_4 = new JPanel();
+		panel_1.add(panel_4);
+		
+		JPanel panel_6 = new JPanel();
+		panel_1.add(panel_6);
+		
+		JPanel panel_7 = new JPanel();
+		panel_1.add(panel_7);
 
 		/* ============ Adding All Listeners Here =================*/
-		/*
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//activates startSort with user selections for the two arrays(Waleed)
-				SortingVisualizer.startSort((String) comboBox.getSelectedItem(), (String) comboBox_1.getSelectedItem());			
-			}
-		});
-
-		//Activates stopSort from SortingVisualizer(Waleed)
-		btnStop.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SortingVisualizer.stopSort((String) comboBox.getSelectedItem(), (String) comboBox_1.getSelectedItem());
-			}
-		});
-
-		btnHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Create the window. 
-				JFrame frame = new JFrame("Help Menu");
-				//Text in window
-				JLabel textLabel = new JLabel("TEMP: Example information placed here" ,SwingConstants.CENTER);
-				textLabel.setPreferredSize(new Dimension(500, 250));
-				frame.getContentPane().add(textLabel, BorderLayout.CENTER);
-				//Display the window 
-				frame.setLocationRelativeTo(null);
-				frame.pack();
-				frame.setVisible(true);
-			}
-		});
-
-	}
-
-	//Draws the first array
-	public void preDrawArray(Integer[] squares){
-		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
-		arrayWrapper.removeAll();
-		sizeModifier =  (int) ((getHeight()*0.9)/(squarePanels.length));
-		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
-			squarePanels[i] = new JPanel();
-			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
-			squarePanels[i].setBackground(Color.blue);
-			arrayWrapper.add(squarePanels[i], c);
-
-		}
-		repaint();
-		validate();
-	}
-
-	public void reDrawArray(Integer[] x){
-		reDrawArray(x, -1);
-	}
-
-	public void reDrawArray(Integer[] x, int y){
-		reDrawArray(x, y, -1);
-	}
-
-	public void reDrawArray(Integer[] x, int y, int z){
-		reDrawArray(x, y, z, -1);
-	}
-
-
-	public void reDrawArray(Integer[] squares, int working, int comparing, int reading){
-		arrayWrapper.removeAll();
-
-		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
-
-		for(int i = 0; i<squarePanels.length; i++){
-			squarePanels[i] = new JPanel();
-			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
-			if (i == working){
-				squarePanels[i].setBackground(Color.green);				
-			}else if(i == comparing){
-				squarePanels[i].setBackground(Color.red);			
-			}else if(i == reading){
-				squarePanels[i].setBackground(Color.yellow);			
-			}else{
-				squarePanels[i].setBackground(Color.blue);
-			}
-			arrayWrapper.add(squarePanels[i], c);
-		}
-		repaint();
-		validate();
-	}
-
-	//Draws the second array(Waleed)
-	public void preDrawArray2(Integer[] squares){
-		squarePanels = new JPanel[SortingVisualizer.sortDataCount];
-		arrayWrapper2.removeAll();
-
-		sizeModifier =  (int) ((getHeight()*0.9)/(squarePanels.length));
-		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
-			squarePanels[i] = new JPanel();
-			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
-			squarePanels[i].setBackground(Color.blue);
-			arrayWrapper2.add(squarePanels[i], c);
-		}
-		repaint();
-		validate();
-	}
-
-	public void reDrawArray2(Integer[] x){
-		reDrawArray2(x, -1);
-	}
-
-	public void reDrawArray2(Integer[] x, int y){
-		reDrawArray2(x, y, -1);
-	}
-
-	public void reDrawArray2(Integer[] x, int y, int z){
-		reDrawArray2(x, y, z, -1);
-	}
-
-
-	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
-		arrayWrapper2.removeAll();
-		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
-
-		for(int i = 0; i<squarePanels.length; i++){
-			squarePanels[i] = new JPanel();
-			squarePanels[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
-			if (i == working){
-				squarePanels[i].setBackground(Color.green);				
-			}else if(i == comparing){
-				squarePanels[i].setBackground(Color.red);			
-			}else if(i == reading){
-				squarePanels[i].setBackground(Color.yellow);			
-			}else{
-				squarePanels[i].setBackground(Color.blue);
-			}
-			arrayWrapper2.add(squarePanels[i], c);
-		}
-		repaint();
-		validate();
-
-	}
-
-}
-
-*/
+		
 }
 }

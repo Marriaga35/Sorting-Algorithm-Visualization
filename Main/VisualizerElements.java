@@ -6,12 +6,10 @@ package Main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;//(Mario)
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.LayoutManager;//(Mario)
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,13 +48,7 @@ public class VisualizerElements extends JFrame {
 	private int officialSize = 20;
 	private int sizeModifier;
 
-	private final String[] Sorts = {"Bubble", "Insertion", "Merge", "Selection", };
-
-	private JPanel arrayPanel; 
-	private JPanel arrayPanel_1;
-	private JComboBox<String> method;
-	private JComboBox<String> method2;
-	private GridBagConstraints c;
+	private GridBagConstraints constraints;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public VisualizerElements(){
@@ -64,7 +56,6 @@ public class VisualizerElements extends JFrame {
 
 		frame = new JFrame("Sorting Algorithm Visualizer");
 		frame.getContentPane().setBackground(new Color(204, 204, 204));
-		frame.getContentPane().setForeground(Color.BLACK);
 		frame.setBounds(0, 0, 2560/3, 1600/3);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -85,6 +76,7 @@ public class VisualizerElements extends JFrame {
 		textField = new JTextField();
 		textField.setText("20");
 		textField.setToolTipText("Manually insert size value.");
+		//textField.setColumns(10);
 		textField.setBounds(163, 26, 61, 22);
 		frame.getContentPane().add(textField);
 
@@ -106,7 +98,7 @@ public class VisualizerElements extends JFrame {
 		textField_1 = new JTextField();
 		textField_1.setText("10");
 		textField_1.setToolTipText("Manually insert speed value.");
-		textField_1.setColumns(10);
+		//textField_1.setColumns(10);
 		textField_1.setBounds(426, 26, 61, 22);
 		frame.getContentPane().add(textField_1);
 
@@ -259,36 +251,28 @@ public class VisualizerElements extends JFrame {
 
 		/* ============ Center Panels for Graphs ==================*/
 
+		constraints = new GridBagConstraints();
+		constraints.insets = new Insets(0,1,0,1);
+		constraints.anchor = GridBagConstraints.SOUTH; 										//using different layout compared to graphs (border v.s. flow)
+
 		panel = new JPanel();
 		panel.setBounds(38, 102, 363, 236);
 		frame.getContentPane().add(panel);
-		panel.setLayout(new BorderLayout(0, 0));
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{0};
+		gbl_panel.rowHeights = new int[]{0};
+		gbl_panel.rowWeights = new double[]{Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 
 		panel_1 = new JPanel();
 		panel_1.setBounds(425, 102, 363, 236);
 		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{0};
+		gbl_panel_1.rowHeights = new int[]{0};
+		gbl_panel_1.rowWeights = new double[]{Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
 
-		arrayPanel = new JPanel();
-		arrayPanel_1 = new JPanel();//Second array created(Waleed)
-		method = new JComboBox<String>();
-		method2 = new JComboBox<String>();//Second array (Mario)
-		c = new GridBagConstraints();
-
-		for(String s : Sorts) method.addItem(s);
-		for(String s : Sorts) method2.addItem(s);//(Waleed)
-
-		/*Sets FlowLayout to keep array panel at a fixed size
-		 * prevents it from expanding when size of array is increased
-		 * (Mario)
-		 */
-		arrayPanel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 0,90));
-		arrayPanel.setLayout(new GridBagLayout());
-		arrayPanel_1.setLayout(new GridBagLayout());//Layout for second array(Waleed)
-		
-		c.insets = new Insets(0,1,0,1);
-		c.anchor = GridBagConstraints.SOUTH;
-		
 		/* ============ Adding All Listeners Here =================*/
 
 		btnStart.addActionListener(new ActionListener() {
@@ -330,7 +314,7 @@ public class VisualizerElements extends JFrame {
 				btnPrint.print(null);
 			}
 		});
-		
+
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				officialSize = Integer.parseInt(textField.getText());
@@ -339,7 +323,7 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sortDataCount = officialSize;
 			}
 		});
-		
+
 		textField_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				officialSpeed = Integer.parseInt(textField_1.getText());
@@ -357,7 +341,7 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sortDataCount = officialSize;
 			}
 		});
-		
+
 		slider_1.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				textField_1.setText(Integer.toString(slider_1.getValue()));
@@ -366,25 +350,25 @@ public class VisualizerElements extends JFrame {
 				SortingVisualizer.sleep = officialSpeed;
 			}
 		});
-		
-		panel.add(arrayPanel); //changed from west //changed from main frame panel to panel
-		panel_1.add(arrayPanel_1); //changed from east //changed from main frame panel to panel_1
 
 	}
 
-	/* ============ Visualization of Graphs in Action ==========*/
-	
-	//Draws the first array
-	public void preDrawArray(Integer[] squares){
+		/* ============ Visualization of Graphs in Action ==========*/
+
+
+	public void preDrawArray(Integer[] datapanel){
+
+		panel.removeAll();
+		System.out.println("pre1: panel_1 all removed");
 		dataPanel = new JPanel[SortingVisualizer.sortDataCount];
-		arrayPanel.removeAll();
-		sizeModifier =  (int) ((getHeight()*0.9)/(dataPanel.length));
+		sizeModifier = (int) ((getHeight()*0.9/(dataPanel.length)));//========================================================================================
+
 		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
 			dataPanel[i] = new JPanel();
-			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, datapanel[i]*sizeModifier*11));
 			dataPanel[i].setBackground(Color.orange);
-			arrayPanel.add(dataPanel[i], c);
-			System.out.println("pre1: " + i);
+			panel.add(dataPanel[i], constraints);
+			//System.out.println("pre1: " + i);
 
 		}
 		repaint();
@@ -404,14 +388,15 @@ public class VisualizerElements extends JFrame {
 	}
 
 
-	public void reDrawArray(Integer[] squares, int working, int comparing, int reading){
-		arrayPanel.removeAll();
+	public void reDrawArray(Integer[] datapanel, int working, int comparing, int reading){
 
-		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
+		panel.removeAll();
+		System.out.println("re1: panel all removed");
 
 		for(int i = 0; i<dataPanel.length; i++){
+
 			dataPanel[i] = new JPanel();
-			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, datapanel[i]*sizeModifier*11));
 			if (i == working){
 				dataPanel[i].setBackground(Color.green);				
 			}else if(i == comparing){
@@ -419,28 +404,30 @@ public class VisualizerElements extends JFrame {
 			}else if(i == reading){
 				dataPanel[i].setBackground(Color.yellow);			
 			}else{
-				dataPanel[i].setBackground(Color.blue);
+				dataPanel[i].setBackground(Color.orange);
 			}
-			arrayPanel.add(dataPanel[i], c);
-			System.out.println("re1: " + i);
+			panel.add(dataPanel[i], constraints);
+			//System.out.println("re1: " + i);
 
 		}
 		repaint();
 		validate();
 	}
 
-	//Draws the second array(Waleed)
-	public void preDrawArray2(Integer[] squares){
-		dataPanel = new JPanel[SortingVisualizer.sortDataCount];
-		arrayPanel_1.removeAll();
 
-		sizeModifier =  (int) ((getHeight()*0.9)/(dataPanel.length));
+	public void preDrawArray2(Integer[] datapanel){
+
+		panel_1.removeAll();
+		System.out.println("pre2: panel_1 all removed");
+		dataPanel = new JPanel[SortingVisualizer.sortDataCount];
+		sizeModifier =  (int) ((getHeight()*0.9/(dataPanel.length))); //============================================================================================================
+
 		for(int i = 0; i<SortingVisualizer.sortDataCount; i++){
 			dataPanel[i] = new JPanel();
-			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, datapanel[i]*sizeModifier*11));
 			dataPanel[i].setBackground(Color.blue);
-			arrayPanel_1.add(dataPanel[i], c);
-			System.out.println("pre2: " + i);
+			panel_1.add(dataPanel[i], constraints);
+			//System.out.println("pre2: " + i);
 
 		}
 		repaint();
@@ -459,14 +446,15 @@ public class VisualizerElements extends JFrame {
 		reDrawArray2(x, y, z, -1);
 	}
 
+	public void reDrawArray2(Integer[] datapanel, int working, int comparing, int reading){
 
-	public void reDrawArray2(Integer[] squares, int working, int comparing, int reading){
-		arrayPanel_1.removeAll();
-		setLayout((LayoutManager) new FlowLayout(FlowLayout.CENTER, 0,90));//keeps graph contained during redraw(Mario)
+		panel_1.removeAll();
+		System.out.println("re2: panel_1 all removed");
 
 		for(int i = 0; i<dataPanel.length; i++){
+
 			dataPanel[i] = new JPanel();
-			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, squares[i]*sizeModifier));
+			dataPanel[i].setPreferredSize(new Dimension(SortingVisualizer.blockWidth, datapanel[i]*sizeModifier*11));
 			if (i == working){
 				dataPanel[i].setBackground(Color.green);				
 			}else if(i == comparing){
@@ -476,8 +464,8 @@ public class VisualizerElements extends JFrame {
 			}else{
 				dataPanel[i].setBackground(Color.blue);
 			}
-			arrayPanel_1.add(dataPanel[i], c);
-			System.out.println("re2: " + i);
+			panel_1.add(dataPanel[i], constraints);
+			//System.out.println("re2: " + i);
 
 		}
 		repaint();
