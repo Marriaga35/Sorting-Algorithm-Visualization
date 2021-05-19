@@ -16,7 +16,7 @@ import SortingMethods.*;
 public class SortingVisualizer {
 	
 	private static Thread sortingThread;
-	private static Thread sortingThread2;
+	private static Thread sortingThread2;//Added sortingThread2 to process different start/stop calls(Waleed)
 	public static VisualizerElements frame;
 	public static Integer[] toBeSorted;
 	public static boolean isSorting = false;
