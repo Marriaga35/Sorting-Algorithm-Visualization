@@ -1,9 +1,9 @@
 //Most of the code is not our original work
 //Any code added will be signed by the contributor who did the work
 
-//written by:
-//tested by:
-//debugged by:
+//written by: Waleed Qureshi
+//tested by: Waleed Qureshi
+//debugged by: Waleed Qureshi
 
 package SortingMethods;
 
