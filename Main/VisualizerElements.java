@@ -361,7 +361,7 @@ public class VisualizerElements extends JFrame {
 
 		/* ============ Visualization of Graphs in Action ==========*/
 
-
+	//Draws the first array
 	public void preDrawArray(Integer[] datapanel){
 
 		panel.removeAll();
@@ -420,7 +420,10 @@ public class VisualizerElements extends JFrame {
 		validate();
 	}
 
-
+	//I incorporated the preDrawArray2 and reDrawArray2 functions
+	//These are based on the already existing functions: preDrawArray and reDrawArray
+	//I simply replaced arrayWrapper with arrayWrapper2
+	//Draws the second array(Waleed)
 	public void preDrawArray2(Integer[] datapanel){
 
 		panel_1.removeAll();
