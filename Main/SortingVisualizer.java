@@ -61,7 +61,7 @@ public class SortingVisualizer {
 		frame.preDrawArray2(toBeSorted);//Inclusion of second array (Waleed)
 	}
 	
-	public static void startSort(String type, String type2){
+	public static void generateDataset(String type, String type2){
 		//Added String type2 to accept user choice for both arrays(Waleed)
 		//Inclusion of sortingThread2
 
@@ -161,7 +161,7 @@ public class SortingVisualizer {
 		return image;}
 	
 	//Calls on SaveImage method.
-	protected static void SaveScreenShot(Component component, String filename)  throws Exception {
+	protected static void saveReport(Component component, String filename)  throws Exception {
 		
 		BufferedImage image = SaveImage(frame);
 		ImageIO.write(image,"jpeg", new File (filename));

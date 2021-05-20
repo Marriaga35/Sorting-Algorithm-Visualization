@@ -309,7 +309,7 @@ public class VisualizerElements extends JFrame {
 
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SortingVisualizer.startSort((String) comboBox.getSelectedItem(), (String) comboBox_1.getSelectedItem());
+				SortingVisualizer.generateDataset((String) comboBox.getSelectedItem(), (String) comboBox_1.getSelectedItem());
 				System.out.println(comboBox.getSelectedItem());
 				System.out.println(comboBox_1.getSelectedItem());
 
