@@ -46,6 +46,7 @@ public class VisualizerElements extends JFrame {
 	private JButton btnPause;
 	private JButton btnPrint;
 	private JButton btnHelp;
+	//private JButton save;//Save file(Mario)
 	private int time = 0;
 	private int time_1 = 0;
 	private int officialSpeed = 10;
@@ -278,6 +279,33 @@ public class VisualizerElements extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 
 		/* ============ Adding All Listeners Here =================*/
+
+		//save = new JButton("Save");//Save button (Mario)
+		/*Save button saves result comparisons data. (Mario)		
+			save.addActionListener((ActionListener) new ActionListener() {
+			
+			  public void actionPerformed(ActionEvent e){
+			
+				 
+					  try {
+						  SortingVisualizer.SaveScreenShot(wrapper, "D:\\ Sorting Algorithm.jpeg");
+			  
+				  }
+					  catch(Exception evt){System.out.println(e);}    
+				  
+				  {		
+					 //Pop up window confirming save. (Mario)
+					  JFrame frame = new JFrame("Save");
+					  JLabel textLabel = new JLabel("Save sucessful",SwingConstants.CENTER);
+					  frame.getContentPane().add(textLabel, BorderLayout.CENTER);
+					  frame.setLocationRelativeTo(null);
+					  frame.pack();
+				      frame.setVisible(true);
+		          }    
+			
+			  }
+			  });*/ 
+		//buttonWrapper.add(save);//(Mario)
 
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
