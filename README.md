@@ -8,12 +8,12 @@ Sorting Algorithm Visualization is a program for enterprises to load data files 
 
 **Background:**
 
-Businesses have to make a lot of decisions based on data that they are presented with. Which includes major decisions like company finances, labor tracking, and  inventory control. With the functions provided by this program cost cutting could save a company a lot of money.
+Businesses have to make a lot of decisions based on data that they are presented with. Which includes major decisions like company finances, labor tracking, and  inventory control. With the functions provided by this program cost cutting could save a company a lot of money. Sorting a list of items manually can take a long time and this is especially true is one is working with a large list. However, sorting algorithms can be created to make this sorting of data much easier. An efficient sorting algorithm is necessary for one to carry out other operations on a dataset such as searching or modification. In addition, sorting a dataset allows it to be more easily read and interpreted by the user.
 
 
 **Proposed Solution:**
 
-The program is designed to operate as easy as possible. Minimize little to no training needed. Easy instructions/help menu to keep things simple. So focus is strictly on the important data and visualization of the graph's results. Print graph function so that the user could provide if needed in a presentation.
+There is already a wide variety of popular sorting algorithms. These include: Merge Sort, Insertion Sort, Bubble Sort, Selection Sort, etc. However, the goal for this project is to determine which of these sorting methods is most efficient. The program is designed to operate as easy as possible. Minimize little to no training needed. Easy instructions/help menu to keep things simple. So focus is strictly on the important data and visualization of the graph's results. Print graph function so that the user could provide if needed in a presentation.
 
 
 **Running the Application:**
