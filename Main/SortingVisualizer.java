@@ -1,9 +1,9 @@
 //Most of the code is not our original work
 //Any code added will be signed by the contributor who did the work
 
-//written by: Waleed, 
-//tested by: Waleed,
-//debugged by: Waleed, 
+//written by: Waleed, Mario
+//tested by: Waleed, Mario, Gerardo, Kyle
+//debugged by: Waleed, Mario, Gerardo, Kyle
 
 package Main;
 
@@ -160,7 +160,7 @@ public class SortingVisualizer {
 		component.paint(image.getGraphics());
 		return image;}
 	
-	//Calls on SaveImage method.
+	//Calls on SaveImage method. (Mario)
 	protected static void saveReport(Component component, String filename)  throws Exception {
 		
 		BufferedImage image = SaveImage(frame);
