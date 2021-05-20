@@ -20,6 +20,10 @@ There is already a wide variety of popular sorting algorithms. These include: Me
 
 The application is downloaded to the local machine. It's a runnable jar file that can either be ran by clicking on the jar file or implemented through the native computer's terminal.
 
+**Input Parameters**
+
+There are no external input parameters from the user which are required. All necessary inputs are available through the program itself. The user simply need to select the sorting method of his or her choice followed by a typing in a value for sorting size and speed. Afterward, the user just needs to press start and the program will begin executing.
+
 
 
 **Authors**
