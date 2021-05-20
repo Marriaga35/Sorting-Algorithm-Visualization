@@ -26,7 +26,7 @@ No user authentication (username/password) is necessary to operate the program. 
 
 **Required Files**
 
-The jgoodies.jar files which have been provided are requires for title labels in the interface. The user will need to copy these files in addition to the available .java files in order to successfully run the program.
+The jgoodies.jar files which have been provided are requires for title labels in the interface. The user will need to copy these files in addition to the available .java files in order to successfully run the program. No database tables will be required.
 
 
 **Authors**
