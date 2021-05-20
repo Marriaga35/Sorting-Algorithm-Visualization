@@ -22,3 +22,6 @@ The application is downloaded to the local machine. It's a runnable jar file tha
 
 
 
+**Authors**
+
+**Gerardo Alcazar, Mario Arriaga, Kyle Nickerson, Waleed Qureshi**
