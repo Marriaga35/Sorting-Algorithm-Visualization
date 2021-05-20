@@ -40,7 +40,7 @@ public class SortingVisualizer {
 		if (isSorting) return;
 		System.out.println("Array has been Reset");
 		toBeSorted = new Integer[sortDataCount];
-		blockWidth = 310/sortDataCount;//(int) Math.max(Math.floor(500/sortDataCount), 1);
+		blockWidth = 310/sortDataCount;
 		for(int i = 0; i<toBeSorted.length; i++){
 			if (stepped) {
 				toBeSorted[i] = i;
