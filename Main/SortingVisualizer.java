@@ -7,9 +7,12 @@
 
 package Main;
 
-import java.awt.EventQueue;
+import java.awt.Component;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.imageio.ImageIO;
 
 import SortingMethods.*;
 
@@ -27,18 +30,9 @@ public class SortingVisualizer {
 	public static boolean stepped = false;
 	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new VisualizerElements();
-					resetArray();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
+		frame = new VisualizerElements();
+		resetArray();
+		frame.setLocationRelativeTo(null);
 	}
 	
 	public static void resetArray(){
@@ -140,46 +134,6 @@ public class SortingVisualizer {
 		}
 		
 	}
-		
-	
-	     /*startSort2 switch case for second array
-	     * uses sort methods 2 to perform reDrawArray2.
-	     * (Mario)
-	     */
-		/*public static void startSort2(String s2){
-			
-			if (sortingThread == null || !isSorting){
-				
-				resetArray();
-				
-				isSorting = true;
-
-				switch(s2){
-				
-				case "Bubble":
-					sortingThread = new Thread(new BubbleSort2(toBeSorted, frame, false));
-					break;
-					
-				case "Insertion":
-					sortingThread = new Thread(new InsertionSort2(toBeSorted, frame, false));
-					break;
-					
-				case "Merge":
-					sortingThread = new Thread(new MergeSort2());
-					break;	
-					
-				case "Selection":
-					sortingThread = new Thread(new SelectionSort2(toBeSorted, frame, false));
-					break;
-				default:
-					isSorting = false;
-					return;
-				}
-				
-				sortingThread.start();
-				
-			}
-	}*/
 
 	//Inclusion of pause button(Waleed)
 	//int x = 1 serves as a secondary condition to pass(Waleed)
@@ -198,6 +152,19 @@ public class SortingVisualizer {
 			x--;
 		}
 		
+	}
+
+	 //Captures Image of Jframe to save to file. (Mario)
+	public static BufferedImage SaveImage(Component component) {
+		BufferedImage image = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
+		component.paint(image.getGraphics());
+		return image;}
+	
+	//Calls on SaveImage method.
+	protected static void SaveScreenShot(Component component, String filename)  throws Exception {
+		
+		BufferedImage image = SaveImage(frame);
+		ImageIO.write(image,"jpeg", new File (filename));
 	}
 
 }
