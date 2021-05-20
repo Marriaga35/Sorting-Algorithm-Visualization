@@ -22,13 +22,26 @@ The application is downloaded to the local machine. It's a runnable jar file tha
 
 **Input Parameters**
 
-No user authentication (username/password) is necessary to operate the program. There are no external input parameters from the user which are required. All necessary inputs are available through the program itself. The user simply need to select the sorting method of his or her choice followed by a typing in a value for sorting size and speed. Afterward, the user just needs to press start and the program will begin executing.
+There are no external input parameters from the user which are required. All necessary inputs are available through the program itself. The user simply need to select the sorting method of his or her choice followed by a typing in a value for sorting size and speed. Afterward, the user just needs to press start and the program will begin executing.
 
-**Required Files**
-
-The jgoodies.jar files which have been provided are requires for title labels in the interface. The user will need to copy these files in addition to the available .java files in order to successfully run the program. No database tables will be required.
 
 
 **Authors**
 
 **Gerardo Alcazar, Mario Arriaga, Kyle Nickerson, Waleed Qureshi**
+
+
+**Unit Test**
+
+**Test Procedure:**
+
+Generate Dataset
+-Pass/Fail Criteria: The test passes if the system successfully displays a randomly generated dataset over the user menu.
+-Input Data: N/A
+
+-Expected Results:
+Displays Random Array in graph
+
+
+
+
