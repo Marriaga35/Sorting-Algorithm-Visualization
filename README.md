@@ -35,12 +35,58 @@ There are no external input parameters from the user which are required. All nec
 
 **Test Procedure:**
 
-Generate Dataset
+**Generate Dataset**
+
 -Pass/Fail Criteria: The test passes if the system successfully displays a randomly generated dataset over the user menu.
+
 -Input Data: N/A
 
 -Expected Results:
 Displays Random Array in graph
+
+
+**Test Procedure:**
+
+**Start Button**
+
+-Pass/Fail Criteria: The test passes if the system successfully runs the chosen sort method and displays the final sorted array.
+
+-Input Data: N/A
+
+-Expected Results:
+1. Sort Method runs
+2. Displayed array will run/move concurrently
+3. Final sorted array displayed with final information
+
+
+**Test Procedure:**
+
+**Save Button**
+
+-Pass/Fail Criteria: The test passes if the system successfully saves an image of the report in an archive.
+
+-Input Data: N/A
+
+-Expected Results:
+
+The system displays a “Report Saved” message to the user.
+
+
+**Test Procedure:**
+
+**Help Button**
+
+-Pass/Fail Criteria: The test passes if the system successfully transitions from the Main menu to the Help Menu.
+
+-Input Data: N/A
+
+-Expected Results:
+
+Help information displays to the user.
+
+
+
+
 
 
 
