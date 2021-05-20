@@ -1,9 +1,9 @@
 //Most of the code is not our original work
 //Any code added will be signed by the contributor who did the work
 
-//written by: Waleed,
-//tested by: Waleed, 
-//debugged by: Waleed, 
+//written by: Waleed, Mario,  Gerardo, Kyle
+//tested by: Waleed, Mario,  Gerardo, Kyle
+//debugged by: Waleed, Mario,  Gerardo, Kyle
 
 package Main;
 
@@ -279,7 +279,8 @@ public class VisualizerElements extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 
 		/* ============ Adding All Listeners Here =================*/
-
+		
+                        ///******Code is functional needs to be added on GUI*****///(Mario)
 		//save = new JButton("Save");//Save button (Mario)
 		/*Save button saves result comparisons data. (Mario)		
 			save.addActionListener((ActionListener) new ActionListener() {
